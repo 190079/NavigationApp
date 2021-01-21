@@ -21,6 +21,7 @@ class Login : AppCompatActivity() {
     private lateinit var SignInBtn:Button
     private lateinit var FAuth:FirebaseAuth
     private lateinit var Register:TextView
+    private lateinit var ForgotPass:TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,6 +30,7 @@ class Login : AppCompatActivity() {
         PassVar = findViewById(R.id.PassEntry)
         SignInBtn = findViewById(R.id.SigninBtn)
         Register = findViewById(R.id.SignUpTxt)
+        ForgotPass = findViewById(R.id.passForgot)
         FAuth = Firebase.auth
         SignInBtn.setOnClickListener {
             var EmailVal=Emailvar.text.toString().trim()
@@ -70,6 +72,9 @@ class Login : AppCompatActivity() {
             val intent = Intent(applicationContext,SignUP::class.java)
             startActivity(intent)
             return@setOnClickListener
+        }
+        ForgotPass.setOnClickListener{
+            val intent = Intent(applicationContext,ForgotPassword::class.java)
         }
     }
 
