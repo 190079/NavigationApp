@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">NavigationApp</string>
     <string name="mapboxaccess">pk.eyJ1IjoiMTkwMDc5IiwiYSI6ImNranRzYTdncTBncG8yeXFzM3E1c3ZvM3oifQ.BxQ3Zt9arnhcsfu7NnAh_A</string>
+    <string name="defaultStyle">mapbox://styles/190079/ckk56cyc362bc17lnoriddeyz</string>
 </resources>

@@ -91,14 +91,13 @@ class SignUP : AppCompatActivity() {
     }
 
     private fun startIndent(menuActivity: AppCompatActivity) {
-        val indent = Intent(applicationContext, MenuActivity::class.java)
+        val indent = Intent(applicationContext, menuActivity::class.java)
         startActivity(indent)
         return
     }
 
     private fun storeUserInfo(fname: String, email: String, phone: String, userID: String) {
         db = Firebase.firestore
-        val DocRef = db.collection("users").document(userID)
         val user = hashMapOf<String,String>("Fname" to fname,
         "Email" to email,
         "Phone" to phone)
