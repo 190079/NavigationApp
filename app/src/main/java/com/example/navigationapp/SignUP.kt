@@ -9,6 +9,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
@@ -62,6 +63,7 @@ class SignUP : AppCompatActivity() {
             if (task.isComplete) {
                 val userID = FAuth.currentUser!!.uid
                 storeUserInfo(fname, email, phone, userID)
+                sendVerification(FAuth.currentUser!!)
                 Log.d("TAG", "createUserWithEmail:success")
                 startIndent(MenuActivity())
                 return@addOnCompleteListener
@@ -72,6 +74,17 @@ class SignUP : AppCompatActivity() {
                         Toast.LENGTH_SHORT).show()
                 return@addOnCompleteListener
 
+            }
+        }
+
+    }
+
+    private fun sendVerification(currentUser: FirebaseUser) {
+        currentUser.sendEmailVerification().addOnCompleteListener(){
+            task -> if (task.isSuccessful){
+            Toast.makeText(this, "Verification email has been sent", Toast.LENGTH_SHORT).show()
+            }else{
+                Log.d("TAG","onFailure: Email not sent " )
             }
         }
 

@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">NavigationApp</string>
+    <string name="mapboxaccess">pk.eyJ1IjoiMTkwMDc5IiwiYSI6ImNranRzYTdncTBncG8yeXFzM3E1c3ZvM3oifQ.BxQ3Zt9arnhcsfu7NnAh_A</string>
 </resources>
