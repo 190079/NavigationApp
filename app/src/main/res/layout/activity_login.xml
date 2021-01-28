@@ -10,7 +10,7 @@
 
     <LinearLayout
         android:layout_width="398dp"
-        android:layout_height="590dp"
+        android:layout_height="match_parent"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -93,40 +93,37 @@
             android:layout_width="match_parent"
             android:layout_height="10dp" />
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/passForgot"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:paddingStart="50dp">
-
-            <TextView
-                android:id="@+id/SigninBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:background="@drawable/mapbox_bg_feedback_report_issue_button"
-                android:gravity="center|center_horizontal"
-                android:text="Log In"
-                android:textColor="#FFFFFF"
-                android:textSize="24sp" />
-
-            <TextView
-                android:id="@+id/passForgot"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Forgot Password?"
-                android:textColor="#FFFFFF"
-                android:textSize="24sp"
-                android:textStyle="bold" />
-
-        </LinearLayout>
+            android:gravity="right"
+            android:paddingEnd="20dp"
+            android:text="Forgot Password?"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="10dp" />
+            android:layout_height="25dp" />
+
+        <TextView
+            android:id="@+id/SigninBtn"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|left"
+            android:background="@drawable/mapbox_bg_feedback_report_issue_button"
+            android:gravity="center"
+            android:paddingStart="25dp"
+            android:text="Log In"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="25dp" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -142,7 +139,7 @@
                 android:layout_weight="1"
                 android:text="I am not a user?"
                 android:textColor="#FFEB3B"
-                android:textSize="24sp" />
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/SignUpTxt"
@@ -151,7 +148,7 @@
                 android:layout_weight="1"
                 android:text="Register"
                 android:textColor="#FFFFFF"
-                android:textSize="24sp"
+                android:textSize="20sp"
                 android:textStyle="normal|bold" />
         </LinearLayout>
 
