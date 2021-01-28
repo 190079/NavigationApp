@@ -30,7 +30,7 @@ class Login : AppCompatActivity() {
     private fun setLayout() {
         Emailvar = findViewById<EditText>(R.id.EmailEntry)
         PassVar = findViewById<EditText>(R.id.PassEntry)
-        SignInBtn = findViewById<Button>(R.id.SigninBtn)
+        SignInBtn = findViewById(R.id.SigninBtn)
         Register = findViewById<TextView>(R.id.SignUpTxt)
         ForgotPass = findViewById<TextView>(R.id.passForgot)
         FAuth = Firebase.auth

@@ -7,7 +7,7 @@
     android:background="#3F51B5"
     tools:context=".MenuActivity">
 
-    <com.mapbox.mapboxsdk.maps.MapView
+    <com.mapbox.navigation.ui.NavigationView
         android:id="@+id/viewmap"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
