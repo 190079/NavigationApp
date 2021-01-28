@@ -16,7 +16,7 @@ import io.perfmark.Tag
 class Login : AppCompatActivity() {
     private lateinit var Emailvar: EditText
     private lateinit var PassVar: EditText
-    private lateinit var SignInBtn: Button
+    private lateinit var SignInBtn: TextView
     private lateinit var FAuth: FirebaseAuth
     private lateinit var Register: TextView
     private lateinit var ForgotPass: TextView
@@ -30,7 +30,7 @@ class Login : AppCompatActivity() {
     private fun setLayout() {
         Emailvar = findViewById<EditText>(R.id.EmailEntry)
         PassVar = findViewById<EditText>(R.id.PassEntry)
-        SignInBtn = findViewById(R.id.SigninBtn)
+        SignInBtn = findViewById<TextView>(R.id.SigninBtn)
         Register = findViewById<TextView>(R.id.SignUpTxt)
         ForgotPass = findViewById<TextView>(R.id.passForgot)
         FAuth = Firebase.auth
