@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
         firebaseAuth = Firebase.auth
         var user: FirebaseUser? = firebaseAuth.currentUser
         if(user != null){
-             defLayout = MenuActivity()
+             defLayout = HomeActivity()
         }
         startIntent(defLayout)
 

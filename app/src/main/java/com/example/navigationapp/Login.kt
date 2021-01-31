@@ -72,7 +72,7 @@ class Login : AppCompatActivity() {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d("TAG", "signInWithEmail:success")
                             Toast.makeText(this@Login, "Authentication Successful.", Toast.LENGTH_SHORT).show()
-                            startIntent(MenuActivity())
+                            startIntent(HomeActivity())
                             return@addOnCompleteListener
                         } else {
                             // If sign in fails, display a message to the user.

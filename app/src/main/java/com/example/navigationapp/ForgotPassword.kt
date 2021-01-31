@@ -12,7 +12,7 @@ class ForgotPassword : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_forgot_password)
         emailVar = findViewById(R.id.emailEntryForgot)
-        sendBtn = findViewById(R.id.sendbtnforgot)
+        sendBtn = findViewById(R.id.sendBtn)
         sendBtn.setOnClickListener {
             val email = emailVar.text.toString()
             resetPassword(email)
