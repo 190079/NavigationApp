@@ -3,6 +3,7 @@ package com.example.navigationapp
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.animation.BounceInterpolator
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -12,6 +13,7 @@ import com.mapbox.mapboxsdk.Mapbox
 import com.mapbox.mapboxsdk.location.LocationComponentActivationOptions
 import com.mapbox.mapboxsdk.location.LocationComponentOptions
 import com.mapbox.mapboxsdk.location.modes.CameraMode
+import com.mapbox.mapboxsdk.location.modes.CameraMode.TRACKING_COMPASS
 import com.mapbox.mapboxsdk.location.modes.RenderMode
 import com.mapbox.mapboxsdk.maps.MapView
 import com.mapbox.mapboxsdk.maps.MapboxMap
@@ -33,17 +35,18 @@ class HomeActivity : AppCompatActivity(), PermissionsListener, OnMapReadyCallbac
         ViewMap?.onCreate(savedInstanceState)
         ViewMap?.getMapAsync(this)
         mylocationBtn.setOnClickListener{
-            enableLocationComponents(mapboxMap.style!!)
+            enableLocationComponents()
+
         }
         }
 
     override fun onExplanationNeeded(permissionsToExplain: MutableList<String>?) {
         Toast.makeText(this, "This app requires location permissions to be enabled", Toast.LENGTH_LONG).show()
+        return
     }
 
     override fun onPermissionResult(granted: Boolean) {
         if (granted) {
-
         } else {
             Toast.makeText(this,"Please permit location services which is required by this applicaiton", Toast.LENGTH_LONG).show()
             finish()
@@ -56,38 +59,42 @@ class HomeActivity : AppCompatActivity(), PermissionsListener, OnMapReadyCallbac
     }
 
     @SuppressLint("MissingPermission")
-    private fun enableLocationComponents(loadedMapStyle: Style) {
+    private fun enableLocationComponents() {
         // Check if permissions are enabled and if not request
         if (PermissionsManager.areLocationPermissionsGranted(this)) {
 
 // Create and customize the LocationComponent's options
-            val customLocationComponentOptions = LocationComponentOptions.builder(this)
+            val customLocationComponentOptions = LocationComponentOptions
+                    .builder(this).pulseEnabled(true).pulseColor(getColor(R.color.mapbox_blue)).pulseAlpha(.3f).pulseInterpolator(BounceInterpolator())
                     .trackingGesturesManagement(true)
-                    .accuracyColor(ContextCompat.getColor(this, R.color.green))
+                    .accuracyColor(ContextCompat.getColor(this, R.color.mapbox_blue))
                     .build()
 
-            val locationComponentActivationOptions = LocationComponentActivationOptions.builder(this, loadedMapStyle)
-                    .locationComponentOptions(customLocationComponentOptions)
+            val locationComponentActivationOptions = LocationComponentActivationOptions.builder(this, mapboxMap.style!!)
+                    .locationComponentOptions(customLocationComponentOptions).useDefaultLocationEngine(true)
                     .build()
 
 // Get an instance of the LocationComponent and then adjust its settings
+            
             mapboxMap.locationComponent.apply {
 
 // Activate the LocationComponent with options
                 activateLocationComponent(locationComponentActivationOptions)
-
 // Enable to make the LocationComponent visible
                 isLocationComponentEnabled = true
 
+
 // Set the LocationComponent's camera mode
-                cameraMode = CameraMode.TRACKING
+                cameraMode = CameraMode.TRACKING_GPS
 
 // Set the LocationComponent's render mode
-                renderMode = RenderMode.COMPASS
-            }
+                renderMode = RenderMode.NORMAL
+            zoomWhileTracking(16.0)}
+
         } else {
             permissionsManager = PermissionsManager(this)
             permissionsManager.requestLocationPermissions(this)
+            enableLocationComponents()
         }
     }
 
