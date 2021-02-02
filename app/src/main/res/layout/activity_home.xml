@@ -4,7 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:foregroundGravity="center"
+    app:layout_anchorGravity="center"
     tools:context=".HomeActivity">
+
     <com.mapbox.mapboxsdk.maps.MapView
         android:id="@+id/mapView"
         android:layout_width="match_parent"
@@ -12,6 +16,17 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/mylocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|right|end"
+            android:layout_margin="32dp"
+            android:clickable="true"
+            android:foreground="@android:drawable/ic_menu_mylocation"
+            android:foregroundGravity="center" />
+    </com.mapbox.mapboxsdk.maps.MapView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

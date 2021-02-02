@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.mapbox.android.core.permissions.PermissionsListener
 import com.mapbox.android.core.permissions.PermissionsManager
 import com.mapbox.mapboxsdk.Mapbox
@@ -21,14 +22,19 @@ class HomeActivity : AppCompatActivity(), PermissionsListener, OnMapReadyCallbac
     private lateinit var mapboxMap: MapboxMap
     private var ViewMap: MapView? = null
     private var permissionsManager: PermissionsManager = PermissionsManager(this)
+    private lateinit var mylocationBtn: FloatingActionButton
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         Mapbox.getInstance(this,getString(R.string.mapboxaccess))
         setContentView(R.layout.activity_home)
         ViewMap = findViewById(R.id.mapView)
+        mylocationBtn = findViewById(R.id.mylocation)
         ViewMap?.onCreate(savedInstanceState)
         ViewMap?.getMapAsync(this)
+        mylocationBtn.setOnClickListener{
+            enableLocationComponents(mapboxMap.style!!)
+        }
         }
 
     override fun onExplanationNeeded(permissionsToExplain: MutableList<String>?) {
@@ -37,7 +43,7 @@ class HomeActivity : AppCompatActivity(), PermissionsListener, OnMapReadyCallbac
 
     override fun onPermissionResult(granted: Boolean) {
         if (granted) {
-            enableLocationComponents(mapboxMap.style!!)
+
         } else {
             Toast.makeText(this,"Please permit location services which is required by this applicaiton", Toast.LENGTH_LONG).show()
             finish()
@@ -46,7 +52,6 @@ class HomeActivity : AppCompatActivity(), PermissionsListener, OnMapReadyCallbac
     override fun onMapReady(mapboxMap: MapboxMap) {
         this.mapboxMap = mapboxMap
         mapboxMap.setStyle(getString(R.string.defaultStyle)){
-            enableLocationComponents(it)
         }
     }
 
