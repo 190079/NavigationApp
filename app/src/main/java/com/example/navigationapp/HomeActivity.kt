@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.animation.BounceInterpolator
+import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -13,18 +14,18 @@ import com.mapbox.mapboxsdk.Mapbox
 import com.mapbox.mapboxsdk.location.LocationComponentActivationOptions
 import com.mapbox.mapboxsdk.location.LocationComponentOptions
 import com.mapbox.mapboxsdk.location.modes.CameraMode
-import com.mapbox.mapboxsdk.location.modes.CameraMode.TRACKING_COMPASS
 import com.mapbox.mapboxsdk.location.modes.RenderMode
 import com.mapbox.mapboxsdk.maps.MapView
 import com.mapbox.mapboxsdk.maps.MapboxMap
 import com.mapbox.mapboxsdk.maps.OnMapReadyCallback
-import com.mapbox.mapboxsdk.maps.Style
 
 class HomeActivity : AppCompatActivity(), PermissionsListener, OnMapReadyCallback {
     private lateinit var mapboxMap: MapboxMap
     private var ViewMap: MapView? = null
+    private lateinit var searchBtn: FloatingActionButton
     private var permissionsManager: PermissionsManager = PermissionsManager(this)
     private lateinit var mylocationBtn: FloatingActionButton
+    private lateinit var directionLayout: LinearLayout
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -32,10 +33,15 @@ class HomeActivity : AppCompatActivity(), PermissionsListener, OnMapReadyCallbac
         setContentView(R.layout.activity_home)
         ViewMap = findViewById(R.id.mapView)
         mylocationBtn = findViewById(R.id.mylocation)
+        directionLayout = findViewById(R.id.directionLay)
+        searchBtn = findViewById(R.id.searchbtn)
         ViewMap?.onCreate(savedInstanceState)
         ViewMap?.getMapAsync(this)
         mylocationBtn.setOnClickListener{
             enableLocationComponents()
+
+        }
+        searchBtn.setOnClickListener{
 
         }
         }
@@ -83,13 +89,22 @@ class HomeActivity : AppCompatActivity(), PermissionsListener, OnMapReadyCallbac
 // Enable to make the LocationComponent visible
                 isLocationComponentEnabled = true
 
-
+                if (cameraMode == CameraMode.TRACKING_COMPASS){
 // Set the LocationComponent's camera mode
-                cameraMode = CameraMode.TRACKING_GPS
+                cameraMode = CameraMode.TRACKING_GPS_NORTH
 
 // Set the LocationComponent's render mode
-                renderMode = RenderMode.NORMAL
-            zoomWhileTracking(16.0)}
+                renderMode = RenderMode.GPS
+                    zoomWhileTracking(16.0)
+                }else{
+                    cameraMode = CameraMode.TRACKING_COMPASS
+
+// Set the LocationComponent's render mode
+                    renderMode = RenderMode.COMPASS
+                    zoomWhileTracking(10.0)
+
+                }
+            }
 
         } else {
             permissionsManager = PermissionsManager(this)

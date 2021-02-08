@@ -9,25 +9,110 @@
     app:layout_anchorGravity="center"
     tools:context=".HomeActivity">
 
-    <com.mapbox.mapboxsdk.maps.MapView
-        android:id="@+id/mapView"
+    <LinearLayout
+        android:id="@+id/directionLay"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:mapbox_cameraZoom='2'>
+        app:layout_constraintTop_toTopOf="parent">
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/mylocation"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|right|end"
-            android:layout_margin="32dp"
-            android:clickable="true"
-            android:foreground="@android:drawable/ic_menu_mylocation"
-            android:foregroundGravity="center" />
-    </com.mapbox.mapboxsdk.maps.MapView>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_marginBottom="581dp"
+                android:background="#CDDC39"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageButton
+                    android:id="@+id/goback"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="32dp"
+                    android:background="@drawable/abc_vector_test"
+                    app:srcCompat="@drawable/abc_vector_test" />
+
+                <LinearLayout
+                    android:layout_width="290dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="65dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/sourceBtn"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="25dp"
+                        android:height="32dp"
+                        android:background="#D4DE76"
+                        android:gravity="center"
+                        android:text="source"
+                        android:textColorHint="#FFFFFF" />
+
+                    <TextView
+                        android:id="@+id/DestinationBtn"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="10dp"
+                        android:height="32dp"
+                        android:background="#D4DE76"
+                        android:gravity="center"
+                        android:text="Destination"
+                        android:textColorHint="#FFFFFF" />
+                </LinearLayout>
+
+                <ImageButton
+                    android:id="@+id/changebtn"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_marginStart="360dp"
+                    android:layout_marginTop="50dp"
+                    android:background="@android:drawable/ic_popup_sync"
+                    app:srcCompat="@android:drawable/ic_popup_sync" />
+            </FrameLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.mapbox.mapboxsdk.maps.MapView
+            android:id="@+id/mapView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:mapbox_cameraZoom='2'>
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/mylocation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|right|end"
+                android:layout_marginRight="32dp"
+                android:layout_marginBottom="128dp"
+                android:clickable="true"
+                android:foreground="@android:drawable/ic_menu_mylocation"
+                android:foregroundGravity="center"
+                android:visibility="visible" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/searchbtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|right|end"
+                android:layout_margin="32dp"
+                android:clickable="true"
+                android:foreground="@android:drawable/ic_menu_directions"
+                android:foregroundGravity="center" />
+        </com.mapbox.mapboxsdk.maps.MapView>
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
