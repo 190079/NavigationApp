@@ -29,8 +29,6 @@ class HomeActivity : AppCompatActivity(), PermissionsListener, OnMapReadyCallbac
     private lateinit var searchBtn: FloatingActionButton
     private var permissionsManager: PermissionsManager = PermissionsManager(this)
     private lateinit var mylocationBtn: FloatingActionButton
-    private lateinit var invisibleLayout: CoordinatorLayout
-    private lateinit var backBtn: ImageButton
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Mapbox.getInstance(this,getString(R.string.mapboxaccess))
@@ -42,12 +40,7 @@ class HomeActivity : AppCompatActivity(), PermissionsListener, OnMapReadyCallbac
         mylocationBtn.setOnClickListener{
             enableLocationComponents()
         }
-        searchBtn.setOnClickListener{
-            invisibleLayout.toggleVisibility()
-        }
-        backBtn.setOnClickListener{
-            invisibleLayout.toggleVisibility()
-        }
+
 
         }
     fun View.toggleVisibility(){
