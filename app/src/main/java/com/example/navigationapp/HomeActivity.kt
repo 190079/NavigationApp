@@ -3,10 +3,14 @@ package com.example.navigationapp
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.view.animation.BounceInterpolator
-import android.widget.LinearLayout
-import android.widget.Toast
+import android.widget.*
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.content.ContextCompat
+import androidx.core.view.isInvisible
+import androidx.core.view.isVisible
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.mapbox.android.core.permissions.PermissionsListener
 import com.mapbox.android.core.permissions.PermissionsManager
@@ -25,27 +29,35 @@ class HomeActivity : AppCompatActivity(), PermissionsListener, OnMapReadyCallbac
     private lateinit var searchBtn: FloatingActionButton
     private var permissionsManager: PermissionsManager = PermissionsManager(this)
     private lateinit var mylocationBtn: FloatingActionButton
-    private lateinit var directionLayout: LinearLayout
+    private lateinit var invisibleLayout: CoordinatorLayout
+    private lateinit var backBtn: ImageButton
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         Mapbox.getInstance(this,getString(R.string.mapboxaccess))
         setContentView(R.layout.activity_home)
         ViewMap = findViewById(R.id.mapView)
         mylocationBtn = findViewById(R.id.mylocation)
-        directionLayout = findViewById(R.id.directionLay)
-        searchBtn = findViewById(R.id.searchbtn)
         ViewMap?.onCreate(savedInstanceState)
         ViewMap?.getMapAsync(this)
         mylocationBtn.setOnClickListener{
             enableLocationComponents()
-
         }
         searchBtn.setOnClickListener{
+            invisibleLayout.toggleVisibility()
+        }
+        backBtn.setOnClickListener{
+            invisibleLayout.toggleVisibility()
+        }
 
         }
+    fun View.toggleVisibility(){
+        if(visibility == View.VISIBLE){
+            visibility = View.GONE
         }
-
+        else{
+            visibility = View.VISIBLE
+        }
+    }
     override fun onExplanationNeeded(permissionsToExplain: MutableList<String>?) {
         Toast.makeText(this, "This app requires location permissions to be enabled", Toast.LENGTH_LONG).show()
         return
