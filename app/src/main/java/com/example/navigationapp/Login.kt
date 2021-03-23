@@ -2,16 +2,15 @@ package com.example.navigationapp
 
 import android.app.Activity
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
-import android.view.View
 import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import io.perfmark.Tag
+
 
 class Login : AppCompatActivity() {
     private lateinit var Emailvar: EditText
@@ -72,7 +71,7 @@ class Login : AppCompatActivity() {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d("TAG", "signInWithEmail:success")
                             Toast.makeText(this@Login, "Authentication Successful.", Toast.LENGTH_SHORT).show()
-                            startIntent(HomeActivity())
+                            startIntent(testact())
                             return@addOnCompleteListener
                         } else {
                             // If sign in fails, display a message to the user.

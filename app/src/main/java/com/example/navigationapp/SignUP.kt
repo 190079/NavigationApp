@@ -65,7 +65,7 @@ class SignUP : AppCompatActivity() {
                 storeUserInfo(fname, email, phone, userID)
                 sendVerification(FAuth.currentUser!!)
                 Log.d("TAG", "createUserWithEmail:success")
-                startIndent(MenuActivity())
+                startIndent(MainActivity())
                 return@addOnCompleteListener
             } else {
                 // If sign in fails, display a message to the user.

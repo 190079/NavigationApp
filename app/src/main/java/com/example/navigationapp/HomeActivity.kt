@@ -1,16 +1,12 @@
 package com.example.navigationapp
 
 import android.annotation.SuppressLint
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.view.animation.BounceInterpolator
-import android.widget.*
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.coordinatorlayout.widget.CoordinatorLayout
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.core.view.isInvisible
-import androidx.core.view.isVisible
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.mapbox.android.core.permissions.PermissionsListener
 import com.mapbox.android.core.permissions.PermissionsManager
@@ -34,7 +30,7 @@ class HomeActivity : AppCompatActivity(), PermissionsListener, OnMapReadyCallbac
         Mapbox.getInstance(this,getString(R.string.mapboxaccess))
         setContentView(R.layout.activity_home)
         ViewMap = findViewById(R.id.mapView)
-        mylocationBtn = findViewById(R.id.mylocation)
+        mylocationBtn = findViewById(R.id.cameraBtn)
         ViewMap?.onCreate(savedInstanceState)
         ViewMap?.getMapAsync(this)
         mylocationBtn.setOnClickListener{
@@ -69,7 +65,7 @@ class HomeActivity : AppCompatActivity(), PermissionsListener, OnMapReadyCallbac
         }
     }
 
-    @SuppressLint("MissingPermission")
+    @SuppressLint("MissingPermission", "NewApi")
     private fun enableLocationComponents() {
         // Check if permissions are enabled and if not request
         if (PermissionsManager.areLocationPermissionsGranted(this)) {
@@ -100,7 +96,7 @@ class HomeActivity : AppCompatActivity(), PermissionsListener, OnMapReadyCallbac
 
 // Set the LocationComponent's render mode
                 renderMode = RenderMode.GPS
-                    zoomWhileTracking(16.0)
+                    zoomWhileTracking(5.0)
                 }else{
                     cameraMode = CameraMode.TRACKING_COMPASS
 

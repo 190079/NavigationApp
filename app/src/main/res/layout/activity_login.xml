@@ -1,21 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#3F51B5"
+    android:background="#0A0909"
     tools:context=".Login">
 
 
     <LinearLayout
-        android:layout_width="398dp"
-        android:layout_height="590dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical">
 
         <Space
             android:layout_width="wrap_content"
@@ -61,7 +58,7 @@
             android:id="@+id/EmailEntry"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/round_rect"
+            android:background="#2D2B2B"
             android:drawableStart="@android:drawable/ic_dialog_email"
             android:ems="10"
             android:gravity="center"
@@ -79,7 +76,7 @@
             android:id="@+id/PassEntry"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/round_rect"
+            android:background="#2D2B2B"
             android:drawableStart="@android:drawable/ic_lock_idle_lock"
             android:ems="10"
             android:gravity="center"
@@ -103,10 +100,10 @@
 
             <TextView
                 android:id="@+id/SigninBtn"
-                android:layout_width="wrap_content"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:background="@drawable/mapbox_bg_feedback_report_issue_button"
+                android:background="@drawable/round_rect"
                 android:gravity="center|center_horizontal"
                 android:text="Log In"
                 android:textColor="#FFFFFF"
@@ -157,4 +154,4 @@
 
     </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

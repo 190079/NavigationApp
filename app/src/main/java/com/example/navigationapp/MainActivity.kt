@@ -1,5 +1,4 @@
 package com.example.navigationapp
-
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
@@ -8,7 +7,6 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import kotlin.reflect.KClass
 
 
 class MainActivity : AppCompatActivity() {
@@ -20,14 +18,16 @@ class MainActivity : AppCompatActivity() {
         firebaseAuth = Firebase.auth
         var user: FirebaseUser? = firebaseAuth.currentUser
         if(user != null){
-             defLayout = HomeActivity()
+             defLayout = testact()
         }
         startIntent(defLayout)
 
     }
     fun startIntent(activity: Activity) {
-        val intent = Intent(applicationContext,activity::class.java)
+        val intent = Intent(this,activity::class.java)
         startActivity(intent)
         return
     }
+
 }
+
