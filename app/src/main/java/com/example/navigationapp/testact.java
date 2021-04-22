@@ -1,5 +1,7 @@
 package com.example.navigationapp;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -65,7 +67,7 @@ public class testact extends AppCompatActivity implements
     // apiCallTime is the time interval when we call the API in milliseconds, by default this is set
 // to 2000 and you should only increase the value, reducing the interval will only cause server
 // traffic, the latitude and longitude values aren't updated that frequently.
-    private int apiCallTime = 2000;
+    private int apiCallTime = 5000;
 
     // Map variables
     private MapView mapView;
@@ -104,7 +106,8 @@ public class testact extends AppCompatActivity implements
     }
 
     private void myUpdateOperation() {
-
+            Intent intent = new Intent(this, testact.class);
+            startActivity(intent);
         }
 
 
@@ -113,7 +116,7 @@ public class testact extends AppCompatActivity implements
 // Build our client, The API we are using is very basic only returning a handful of
 // information, mainly, the current latitude and longitude of the International Space Station.
         Retrofit client = new Retrofit.Builder()
-                .baseUrl("http://192.168.34.11:2999/")
+                .baseUrl("http://192.168.43.21:2999/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -165,14 +168,14 @@ public class testact extends AppCompatActivity implements
     }
 
     private void initSpaceStationSymbolLayer(@NonNull Style style) {
-        style.addImage("space-station-icon-id",
+        style.addImage("traffic-update",
                 BitmapFactory.decodeResource(
                         this.getResources(), R.drawable.iss));
 
         style.addSource(new GeoJsonSource("source-id"));
 
         style.addLayer(new SymbolLayer("layer-id", "source-id").withProperties(
-                iconImage("space-station-icon-id"),
+                iconImage("traffic-update"),
                 iconIgnorePlacement(true),
                 iconAllowOverlap(true),
                 iconSize(.7f)
@@ -189,15 +192,32 @@ public class testact extends AppCompatActivity implements
             if (spaceStationSource != null) {
                 spaceStationSource.setGeoJson(FeatureCollection.fromFeature(
                         Feature.fromGeometry(Point.fromLngLat(position.getLongitude(), position.getLatitude()))
-                ));
+                )
+                );
+
             }
+
         }
 
 // Lastly, animate the camera to the new position so the user
 // wont have to search for the marker and then return.
         //map.animateCamera(CameraUpdateFactory.newLatLng(position));
         CameraUpdateFactory.newLatLng(position);
+        getDialog();
     }
+
+    private void getDialog() {
+            AlertDialog.Builder alert = new AlertDialog.Builder(this);
+            alert.setTitle("Traffic Alert!");
+            alert.setIcon(R.drawable.alert);
+            alert.setMessage("Jam Detected At Softwarica College");
+            alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                }
+            });
+            alert.show();
+        }
 
     @Override
     public void onExplanationNeeded(List<String> permissionsToExplain) {
